@@ -44,6 +44,14 @@ Front-Panel LCD - [TM1621B](https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2
 ### Connector PCB
 ![screenshot](imj/P2060186.jpg)  
 
+Cable colors
+
+ - Yellow - 24V
+ - Green - GND
+ - Blue - 485
+ - Red - 485
+ - White - sw?
+ - Black - sw?
 
 ### Filament sensor PCB
 

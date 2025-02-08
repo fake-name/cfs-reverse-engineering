@@ -7,3 +7,5 @@ This *should* be trivial, as the printer this normally interoperates with is als
 Given that, the other option is reverse engineering how the feeder works. Fortunately, that should be pretty straightforward for most of the bits.
 
 Anyways, high resolution board images are [here](PCBs.md).
+
+Some attempts at analyzing the various binary firmware and python objects are [here](firmware.md)
