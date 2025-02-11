@@ -16,6 +16,18 @@ Interestingly, the MCU does not run a klipper based system. Instead, it seems to
 
 RT-Thread is apache licensed (not copyleft), but it does require attribution, and interestingly searching for `"creality" "rt-thread"` returns no meaningful results, so creality seems to have managed to even violate a bsd-style license!
 
+Ghidra gives us the full version info:
+
+```
+    debug_print(s_\_|_/_08018378);
+    debug_print(s_-_RT_-_Thread_Operating_System_08018384);
+    debug_print(s_/_|_\_%d.%d.%d_build_%s_%s_080183c0,5,0,2,s_Jan_6_2025_080183b4,s_15:19:29_080183a8);
+    debug_print(s_2006_-_2022_Copyright_by_RT-Thre_080183e4);
+```
+
+So this is based on RT-thread 5.0.2, built on `Jan_6_2025` at `15:19:29`. 5.0.2 was released
+on Oct 7, 2023, so they're a bit behind in updating the copyrights in the code if nothing else.
+
 There's also a LOT of debug/informational statements:
 
 ```
@@ -83,6 +95,30 @@ There's also some super weird stuff:
 I have no idea what a "database" would be in the context of a embedded MCU with no real storage space. My best guess is it's something related to the I2C EEPROM. There are also supporting strings: `read_motor_info eeprom                  - read motor block info from eeprom`.
 
 I suspect there are a number of locations where weird terminology is more a function of poor translation. There are a lot of references to `<something>_aging` in various places, which I suspect may be ore accurately stated as a timeout or latency.
+
+------
+
+So I've been going through and naming function stubs, working through the decompilation of the MCU source, and things are starting to make some sense. They are definitely measuring the motor current for the brushed DC motors:
+
+```
+        rt_kprintf(s_current_channel_=_%d_0800445b + 1,uVar3);
+        FUN_080073e8();
+        FUN_0800c0fc(0xff);
+        iVar1 = _DAT_08004474;
+        while (fVar5 = (float)FUN_0800725a(), iVar2 = _DAT_08004490, (int)ABS(fVar5) < iVar1)
+        {
+            iVar2 = FUN_08003aa8(uVar3,0,5);
+            if (iVar2 != 0)
+            {
+                rt_kprintf(s_AT%d_pull_out,_restart_08004476 + 2,uVar3);
+                FUN_0800c130();
+                goto LAB_0800425c;
+            }
+            FUN_08019cc0(10);
+        }
+```
+
+
 
 
 ------
