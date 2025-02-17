@@ -119,6 +119,90 @@ So I've been going through and naming function stubs, working through the decomp
 ```
 
 
+------
+
+Empirically, connecting to the MCU with a debugger and poking it while it's running let's me determine whether it's primarily running from main flash (`0x0800_0000`), rather then the mirror (`0x0000_0000`). 
+
+```
+0x0800066e in ?? ()
+─── Assembly ──────────────────────────────────────────────────────────────────────────
+ 0x0800066e  ? ldr      r0, [r1, #0]
+ 0x08000670  ? str      r2, [r1, #0]
+ 0x08000672  ? cmp      r0, r2
+ 0x08000674  ? ittt     hi
+ 0x08000676  ? ldrhi    r0, [r3, #0]
+ 0x08000678  ? addhi.w  r0, r0, #16777216       ; 0x1000000
+ 0x0800067c  ? strhi    r0, [r3, #0]
+ 0x0800067e  ? ldr      r0, [r3, #0]
+ 0x08000680  ? movw     r3, #15000      ; 0x3a98
+ 0x08000684  ? udiv     r0, r0, r3
+─── Breakpoints ───────────────────────────────────────────────────────────────────────
+─── Expressions ───────────────────────────────────────────────────────────────────────
+─── History ───────────────────────────────────────────────────────────────────────────
+─── Memory ────────────────────────────────────────────────────────────────────────────
+─── Registers ─────────────────────────────────────────────────────────────────────────
+       r0 0x000009d4        r1 0x20000b28          r2 0x0040103b        r3 0x20000c80
+       r4 0x00007530        r5 0x20000010          r6 0x20000918        r7 0x08002224
+       r8 0x08002208        r9 0x08002224         r10 0x00000001       r11 0x00000002
+      r12 0x00ffffff        sp 0x2000fef0          lr 0x08001437        pc 0x0800066e
+     xPSR 0x01000000     fpscr 0x00000000         msp 0x2000fef0       psp 0x20003af8
+  primask 0x00         basepri 0x00         faultmask 0x00         control 0x00
+─── Source ────────────────────────────────────────────────────────────────────────────
+─── Stack ─────────────────────────────────────────────────────────────────────────────
+[0] from 0x0800066e
+[1] from 0x08001436
+─── Threads ───────────────────────────────────────────────────────────────────────────
+[1] id 0 from 0x0800066e
+─── Variables ─────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────
+>>>
+
+```
+
+Across multiple samples `0x08001436` seems consistently present in the stack. 
+
+
+Looking up what is at that location, it looks reasonable for a main loop:
+
+```
+undefined4 main_func_maybe(uint param_1)
+{
+    char cVar1;
+    uint uVar2;
+    int iVar3;
+    ushort local_32;
+    undefined4 local_30;
+    undefined4 auStack_2c [7];
+    
+    local_30 = 0;
+    setup_func_one(auStack_2c,0,0x1c);
+    local_32 = 0;
+    if (param_1 != 0xffffffff)
+    {
+        setup_func_two();
+    }
+    do
+    {
+        if ((param_1 != 0xffffffff) && (uVar2 = FUN_08000650(), param_1 < uVar2))
+        {
+            return 0xffffffff;
+        }
+        iVar3 = DAT_20000b18;
+        if ((((iVar3 != 0) && (uVar2 = FUN_08000130((int)&local_30,&local_32), 1 < (uVar2 & 0xff))) && (local_32 == 2)) &&
+           (((local_30._1_1_ == '\v' && (local_30._2_1_ == '\x01')) && (iVar3 = FUN_08000a38(), iVar3 == 1))))
+        {
+            FUN_08001304();
+        }
+        cVar1 = DAT_20000010._0_1_;
+    } while (cVar1 == -2);
+    return 0;
+}
+```
+
+It's true that this could very likely be the primary idle loop. Now, since this is a RTOS, we will likely have other threads that are just either not active (because we're not actively sending serial traffic), or just generally not executing (Sampling here is done by just stopping and restarting in GDB by hand multiple times. Low-duty cycle execution contexts are unlikely to be observed).
+
+
+
 
 
 ------

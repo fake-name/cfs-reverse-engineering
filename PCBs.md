@@ -25,36 +25,39 @@ Brushless motor driver - [MS8828](https://www.relmon.com/en/index.php/list/detai
 #### Pinouts:
 
 J4 (Power/Comm Connector)
-
-| Pin #      | Function | MCU Pin No | Logical Pin |
-| ------------- | ------------- | ------------- | -------- |
-| 1 | +24V | n/a |  |
-| 2 | +24V | n/a |  |
-| 3 | GND | n/a |  |
-| 4 | GND | n/a |  |
-| 5 | RS485-B | see note |  |
-| 6 | RS485-A | see note |  |
-| 7 | Filament Buffer SW 1 | p.55 |  |
-| 8 | Filament Buffer SW 2 | p.56 |  |
-
+ 
+| Pin #  | Function             | MCU Pin No | Logical Pin |
+| ------ | -------------------- | ---------- | ----------- |
+| 1      | +24V                 | n/a        |             |
+| 2      | +24V                 | n/a        |             |
+| 3      | GND                  | n/a        |             |
+| 4      | GND                  | n/a        |             |
+| 5      | RS485-B              | see note   |             |
+| 6      | RS485-A              | see note   |             |
+| 7      | Filament Buffer SW 1 | p.55       | PD8         |
+| 8      | Filament Buffer SW 2 | p.56       | PD9         |
 The 485 bus uses 3 pins:
+ 
+ - P.25 (PA2) - TX Enable/RX Disable - 2N7002 translator
+ - P.26 (PA3) - RX
+ - TX - I think strapped to ground. 
 
- - P.25 - TX Enable/RX Disable (maybe inverted?)
- - P.26 - RX
- - P.27 - TX
+This is I believe technically violating RS-485 specs.
 
 
 J15 (FP LCD Connector)
+
 
 | Pin #  |  Function | MCU Pin No | Logical Pin |
 | -------| --------- | ---------- | ----------- |
 | 1      | power     | 3.3V       |             |
 | 2      | power     | GND        |             |
-| 3      |           | p.16       |             |
-| 4      |           | p.17       |             |
-| 5      |           | p.18       |             |
-| 6      |           | p.33       |             |
+| 3      |           | p.16       | PC1         |
+| 4      |           | p.17       | PC2         |
+| 5      |           | p.18       | PC3         |
+| 6      |           | p.33       | PC4         |
 | 7      | backlight |            |             |
+
 
 Note: The backlight pin is a open collector transistor.
 
@@ -63,13 +66,13 @@ J7 Front-Panel LED PCB Connector
 | Pin #  |  Function | MCU Pin No | Logical Pin |
 | -------| --------- | ---------- | ----------- |
 | 1      | power     | 5.0V       |             |
-| 3      |           | p.63       |             |
-| 4      |           | p.93       |             |
-| 5      |           | p.64       |             |
-| 6      |           | p.90       |             |
-| 7      |           | p.91       |             |
-| 8      |           | p.66       |             |
-| 9      |           | p.92       |             |
+| 3      |           | p.63       | PC6         |
+| 4      |           | p.93       | PB7         |
+| 5      |           | p.64       | PC7         |
+| 6      |           | p.90       | PB4         |
+| 7      |           | p.91       | PB5         |
+| 8      |           | p.66       | PC9         |
+| 9      |           | p.92       | PB6         |
 | 10     | power     | GND        |             |
 
 Note: All LED connectors are Open-Collector Transistors.
@@ -79,21 +82,92 @@ outputs.
 
 Motor driver pins
 
-|  Driver pin    |   M1   |   M2   |   M3   |   M4   |
-| -----| ------ | ------ | ------ | ------ |
-| IN 1 | p.84   | p.82   | p.62   | p.60   |
-| IN 2 | p.83   | p.81   | p.61   | p.59   |
+|  Driver pin  |   M1       |   M2       |   M3        |   M4        |
+| ------------ | ---------- | ---------- | ----------- | ----------- |
+| IN 1         | p.84 (PD3) | p.82 (PD1) | p.62 (PD15) | p.60 (PD13) |
+| IN 2         | p.83 (PD2) | p.81 (PD0) | p.61 (PD14) | p.59 (PD12) |
 
 Current Feedback Pins
 
-| Motor |  Pin   |
-| ---   | ------ |
-| M1    | p.34   |
-| M2    | p.15   |
-| M3    | p.24   |
-| M4    | p.23   |
+| Motor |  Pin   | Logical Pin |
+| ---   | ------ | ----------- |
+| M1    | p.34   | PC5         |
+| M2    | p.15   | PC0         |
+| M3    | p.24   | PA1         |
+| M4    | p.23   | PA0         |
 
 Each feedback pin is driven by an op-amp with some gain and a offset shift.
+
+Brushed Motor connector / J5
+
+
+| Pin #  |  Function | MCU Pin No | Logical Pin |
+| -------| --------- | ---------- | ----------- |
+| 1      | I2C?      | P.79       |  PC11       |
+| 2      | Power     | GND        |             |
+| 3      | I2C?      | p.80       |  PC12       |
+| 4      |           | p.88       |  PD7        |
+| 5      |           | p.87       |  PD6        |
+| 6      |           | p.86       |  PD5        |
+| 7      |           | p.85       |  PD4        |
+| 8      | Power     | 5V         |             |
+| 9      |           | M4-Out1    |             |
+| 10     |           | M4-Out2    |             |
+| 11     |           | M3-Out1    |             |
+| 12     |           | M3-Out2    |             |
+| 13     |           | M2-Out1    |             |
+| 14     |           | M2-Out2    |             |
+| 15     |           | M1-Out1    |             |
+| 16     |           | M1-Out2    |             |
+
+
+Pins 1 & 3 have 2N7002 discrete level translators to go from 5V I2C to 3.3V MCU I2C, I believe. They connect thru to the Temp/Humidity measurement I2C sensor in the chamber. 
+
+RFID Readers / J8 / J1
+
+| Pin #  |  Function | J8          | J19         |
+| -------| --------- | ----------- | ----------- |
+| 1      | Power     | 3.3V        |             |
+| 2      | I2C?      | p.48 (PB11) | p.96 (PB9)  |
+| 3      | Power     | GND         |             |
+| 4      | I2C?      | p.47 (PB10) | p.95 (PB8)  |
+| 5      | Power     | GND         |             |
+| 6      |           | N/C?        |             |
+
+Pin 6 on both seems to be not-connected, surprisingly.
+
+J6 - Odometer and second-stage filament presence detector
+
+
+| Pin #  |  Function | MCU Pin No | Logical Pin |
+| -------| --------- | ---------- | ----------- |
+| 1      | Power     | 3.3V       |             |
+| 2      |           | p.46       |  PE15       |
+| 3      |           | p.53       |  PB14       |
+| 4      |           | p.54       |  PB15       |
+| 5      |           | p.52       |  PB13       |
+| 6      |           | p.51       |  PB12       |
+| 7      |           | p.89       |  PB3        |
+| 8      | Power     | Gnd        |             |
+| 9      |           | p.38       |  PE7       |
+| 10     |           | p.39       |  PE8       |
+| 11     |           | p.40       |  PE9       |
+| 12     |           | p.41       |  PE10       | 
+
+Pins 9-12 have R/C filters on them. My current guess is they are 
+the filament presennce paths, while the other 6 are for the odometer.
+
+BLDC Motor Driver:
+
+| Driver Func | MCU Pin No | Logical Pin |
+| ----------- | ---------- | ----------- |
+| SS          | p.03       | PE4         |
+| FG          | p.42       | PE11        |
+| F/R         | p.02       | PE3         |
+| PWM         | p.44       | PE13        |
+
+FG is a tachometer output from the driver. SS is motor brake, F/R is forward/reverse, PWM is speed control (obviously).
+
 
 ### RFID Readers:
 
