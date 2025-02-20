@@ -9,3 +9,8 @@ Given that, the other option is reverse engineering how the feeder works. Fortun
 Anyways, high resolution board images are [here](PCBs.md).
 
 Some attempts at analyzing the various binary firmware and python objects are [here](firmware.md)
+
+
+The board can be flashed with klipper by just treating it as having a STM32F106VET6 (which is binary compatible with the GD32F303VET6). You loose a bit of potential clock-rate by not doing giga-device specific stuff, but this is fairly slow anyways so it should be fine. 
+
+Specifying the klipper host connection to be on PA2/PA3 even works (albeit with RS485).

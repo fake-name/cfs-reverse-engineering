@@ -1,6 +1,6 @@
-## CFS Internal PCBs
+# CFS Internal PCBs
 
-### Main Motherboard
+## Main Motherboard
 ![screenshot](imj/P2060161.jpg)  
 ![screenshot](imj/P1010157.jpg)  
 
@@ -22,9 +22,32 @@ Main CPU: [GD32F303](https://www.gigadevice.com/product/mcu/main-stream-mcus/gd3
 Brushless motor driver - [MS8828](https://www.relmon.com/en/index.php/list/detail/300.html). Made by [Ruimeng TECHNOLOGY](https://www.relmon.com)(sic). This part is interesting, because the firmware has references to a different part in some strings in it (`MS3791`)
 ![screenshot](imj/P2060175.jpg)  
 
-#### Pinouts:
+## Pinouts:
 
-J4 (Power/Comm Connector)
+### Connector types:
+The majority of the connectors on the PCB are variants of the JST ["GH" connector style](https://www.jst.com/products/crimp-style-connectors-wire-to-board-type/gh-connector/), though not likely actually made by JST. 
+
+All connectors other then the RS-485/Power (J4), the LCD (J15) and the filament monitor (J6) are GH-style. This includes the feeder motor connector (J5) which is indeed a GH connector, though with a right-angle-mount PCB connector.
+
+##### J10 "Address" connector (not used?)
+
+This connector is particularly interesting, since it is unused in the CFS configuration, and exposes the USB pins of the MCU. That means it should be possible to make up a USB cable. Alternatively, it also exposes the CAN pins.
+
+The USB interface is annoying in that the MCU documentation specifies approximately 50Ω series termination resistors on both the DM and DP pins, which are not present. It may be possible to add these resistors in-line with the cable. I need to do some experiments.
+
+PA4,6,7 don't have any features that seem to make them of particular interest. 
+
+| Pin #  |  Function | MCU Pin No | Logical Pin | Note |
+| -------| --------- | ---------- | ----------- | ----------- |
+| 1      | power     | 3.3V       |             |             |
+| 2      |           | P.70       | PA11        | USBDM / CAN0_RX       |
+| 3      |           | p.71       | PA12        | USBDP / CAN0_TX       |
+| 4      |           | p.31       | PA6         |             |
+| 5      |           | p.32       | PA7         |             |
+| 6      |           | p.29       | PA4         |             |
+| 7      | power     | GND        |             |             |
+
+##### J4 (Power/Comm Connector)
  
 | Pin #  | Function             | MCU Pin No | Logical Pin |
 | ------ | -------------------- | ---------- | ----------- |
@@ -44,8 +67,13 @@ The 485 bus uses 3 pins:
 
 This is I believe technically violating RS-485 specs.
 
+This device, like many crappy chinese "RS-485" systems, does not *really* support RS485. Instead, the bus is run in a pseudo-differential-open-collector mode (much like CAN networks), in that the transmitter is permanently wired up as "transmitting", e.g. the "space" mode, and rely on the bus termination resistors to drive the bus back to the idle "mark" state. Aside from not being real RS-485, this STRONGLY limits the maximum baud-rate the bus due to the fact that the only termination resistors present on the PCB are two 300Ω resistors, with `A` pulled to VCC (5V) and `B` pulled to ground.
 
-J15 (FP LCD Connector)
+While there is a provision for a 120Ω termination resistor on the board, it is not loaded on the board I have.
+
+
+
+##### J15 (FP LCD Connector)
 
 
 | Pin #  |  Function | MCU Pin No | Logical Pin |
@@ -61,7 +89,7 @@ J15 (FP LCD Connector)
 
 Note: The backlight pin is a open collector transistor.
 
-J7 Front-Panel LED PCB Connector
+##### J7 Front-Panel LED PCB Connector
 
 | Pin #  |  Function | MCU Pin No | Logical Pin |
 | -------| --------- | ---------- | ----------- |
@@ -80,14 +108,14 @@ Presumably, the LEDs are between 5V and the various open-collector
 outputs.
 
 
-Motor driver pins
+##### Motor driver pins
 
 |  Driver pin  |   M1       |   M2       |   M3        |   M4        |
 | ------------ | ---------- | ---------- | ----------- | ----------- |
 | IN 1         | p.84 (PD3) | p.82 (PD1) | p.62 (PD15) | p.60 (PD13) |
 | IN 2         | p.83 (PD2) | p.81 (PD0) | p.61 (PD14) | p.59 (PD12) |
 
-Current Feedback Pins
+##### Current Feedback Pins
 
 | Motor |  Pin   | Logical Pin |
 | ---   | ------ | ----------- |
@@ -98,7 +126,7 @@ Current Feedback Pins
 
 Each feedback pin is driven by an op-amp with some gain and a offset shift.
 
-Brushed Motor connector / J5
+##### Brushed Motor connector / J5
 
 
 | Pin #  |  Function | MCU Pin No | Logical Pin |
@@ -123,7 +151,7 @@ Brushed Motor connector / J5
 
 Pins 1 & 3 have 2N7002 discrete level translators to go from 5V I2C to 3.3V MCU I2C, I believe. They connect thru to the Temp/Humidity measurement I2C sensor in the chamber. 
 
-RFID Readers / J8 / J1
+##### RFID Readers / J8 / J1
 
 | Pin #  |  Function | J8          | J19         |
 | -------| --------- | ----------- | ----------- |
@@ -136,7 +164,7 @@ RFID Readers / J8 / J1
 
 Pin 6 on both seems to be not-connected, surprisingly.
 
-J6 - Odometer and second-stage filament presence detector
+##### J6 - Odometer and second-stage filament presence detector
 
 
 | Pin #  |  Function | MCU Pin No | Logical Pin |
@@ -157,7 +185,7 @@ J6 - Odometer and second-stage filament presence detector
 Pins 9-12 have R/C filters on them. My current guess is they are 
 the filament presennce paths, while the other 6 are for the odometer.
 
-BLDC Motor Driver:
+##### BLDC Motor Driver:
 
 | Driver Func | MCU Pin No | Logical Pin |
 | ----------- | ---------- | ----------- |
