@@ -185,6 +185,8 @@ Pin 6 on both seems to be not-connected, surprisingly.
 Pins 9-12 have R/C filters on them. My current guess is they are 
 the filament presennce paths, while the other 6 are for the odometer.
 
+Hopefully I can extend https://github.com/Klipper3d/klipper/pull/5369 to support the odometer.
+
 ##### BLDC Motor Driver:
 
 | Driver Func | MCU Pin No | Logical Pin |
@@ -243,3 +245,9 @@ It also has a MagnTek [MT6826S](https://www.magntek.com.cn/upload/pdf/202407/MT6
 ### Filament 4-into-1 buffer PCB.
 ![screenshot](imj/P1010147.jpg)  
 ![screenshot](imj/P1010150.jpg)  
+
+The 4-into-1 PCB is very dumb, it just has 2 open-collector outputs that correspond to each optointerruptor. One for each end of the buffer-state.
+
+All the parts on the board are just a DC-DC converter to produce a local power supply from the 24V bus. 
+
+Since all CFS boxes will have access to the buffer state pins, whichever one is currently active in feeding to the print head can autonomously keep the buffer loaded without needing the printer controller's involvement.
