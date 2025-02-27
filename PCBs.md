@@ -37,6 +37,8 @@ The USB interface is annoying in that the MCU documentation specifies approximat
 
 PA4,6,7 don't have any features that seem to make them of particular interest. 
 
+Annoyingly, the Gigadevices USB interface documentation is really terrible, and you also need a 1.5KΩ resistor between D+ and VCC (or a MCU IO pin). Once I added that (to PC6), and told klipper to pull the pin high at boot, the USB interface started working.
+
 | Pin #  |  Function | MCU Pin No | Logical Pin | Note |
 | -------| --------- | ---------- | ----------- | ----------- |
 | 1      | power     | 3.3V       |             |             |
@@ -71,6 +73,9 @@ This device, like many crappy chinese "RS-485" systems, does not *really* suppor
 
 While there is a provision for a 120Ω termination resistor on the board, it is not loaded on the board I have.
 
+I *believe* this connector is a SMW200-08, (Yeonho SMW). 
+
+It is a 2 mm pitch, latching connector, and the full-width latch catch on the PCB-mount connector is fairly distinct.
 
 
 ##### J15 (FP LCD Connector)
@@ -84,28 +89,40 @@ While there is a provision for a 120Ω termination resistor on the board, it is 
 | 4      |           | p.17       | PC2         |
 | 5      |           | p.18       | PC3         |
 | 6      |           | p.33       | PC4         |
-| 7      | backlight |            |             |
+| 7      | backlight | P.35       | PB0         |
 
 
 Note: The backlight pin is a open collector transistor.
 
+
+I *believe* this connector is a SMW200-07, (Yeonho SMW). 
+
+It is a 2 mm pitch, latching connector, and the full-width latch catch on the PCB-mount connector is fairly distinct.
+
+The power-in connector (J4) is the same series.
+
 ##### J7 Front-Panel LED PCB Connector
 
-| Pin #  |  Function | MCU Pin No | Logical Pin |
-| -------| --------- | ---------- | ----------- |
-| 1      | power     | 5.0V       |             |
-| 3      |           | p.63       | PC6         |
-| 4      |           | p.93       | PB7         |
-| 5      |           | p.64       | PC7         |
-| 6      |           | p.90       | PB4         |
-| 7      |           | p.91       | PB5         |
-| 8      |           | p.66       | PC9         |
-| 9      |           | p.92       | PB6         |
-| 10     | power     | GND        |             |
+| Pin #  |  Function | MCU Pin No | Logical Pin | Function         |
+| -------| --------- | ---------- | ----------- | -----------      |
+| 1      | power     | 5.0V       |             |                  |
+| 2      |           | p.63       | PC6         | Slot 1 Red LED   |
+| 3      |           | p.93       | PB7         | Slot 1 White LED |
+| 4      |           | p.64       | PC7         | Slot 2 Red LED   |
+| 5      |           | p.90       | PB4         | Slot 2 White LED |
+| 5      |           | p.65       | PC8         | Slot 3 Red LED   |
+| 6      |           | p.91       | PB5         | Slot 3 White LED |
+| 7      |           | p.66       | PC9         | Slot 4 Red LED   |
+| 8      |           | p.92       | PB6         | Slot 4 White LED |
+| 10     | power     | GND        |             |                  |
 
 Note: All LED connectors are Open-Collector Transistors.
 Presumably, the LEDs are between 5V and the various open-collector
 outputs.
+
+Interestingly, the red LEDs for slots 2 & 3 seem to be the same pin. 
+
+This is a 10 pin connector, but I somehow missed a pin somewhere. 
 
 
 ##### Motor driver pins
@@ -213,6 +230,7 @@ Both RFID readers are identical.
 
 Front-Panel LCD - [TM1621B](https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2209231730_TM-Shenzhen-Titan-Micro-Elec-TM1621B_C5174490.pdf) - Stand-Alone LCD driver, no MCU. 
 ![screenshot](imj/P2060184.jpg)  
+
 
 ### Connector PCB
 ![screenshot](imj/P2060186.jpg)  
