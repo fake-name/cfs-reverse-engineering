@@ -31,3 +31,9 @@ The other end is another custom PCB. In this case, it's another custom PCB heavi
 It also has a pair of LEDs to indicate buffer status, and some activity LEDs. 
 
 Both boards are up at [Adapter](~/Adapter/). License for them is GPL3, since the candleLight FD is GPL3.
+
+I had JLCPCB do the PCBs, they work out to ~$7 ea (CAN Adapter) and ~$10 ea (CFS-Bus Adapter), at qty 5 of each. I'm also trying LCSC's [custom-cable service](https://www.lcsc.com/customcables?utm_source=customcables&utm_medium=navbar) to make the short interposing cables, which wound up being ~$50 for 10 of each.
+
+Full production files for each of the PCBs are in the respective folders, they should drag & drop into JLCPCB's PCBA service. The cables are based on a lot of guesswork about what the right connectors are, once I confirm I have the right part-numbers, I'll document that here as well.
+
+Note that immediately after ordering the CFS-Bus-Adapter, I realized it would be super neat to allow the CAN transciever to be either connected to the CAN peripheral in the MCU (which is how it is now), and a UART interface. That would let this interact with the existing firmware if/when it get's properly reverse engineered, or Creality finally stops violating the GPL and provides the source for their [distributed-in-compiled-form-only klipper extensions](https://github.com/Guilouz/Creality-K2Plus-Extracted-Firmwares/tree/main/Firmware/usr/share/klipper/klippy/extras) (see all `.so` files, which are compiled with cython to make them opaque).
