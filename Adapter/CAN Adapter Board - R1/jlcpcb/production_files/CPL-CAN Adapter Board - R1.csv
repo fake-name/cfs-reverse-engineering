@@ -1,0 +1,7 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+C2,2.2u,C_0603_1608Metric,15.0,6.25,180.0,top
+C4,1u,C_0402_1005Metric,10.25,10.0,-90.0,top
+J1,Conn_01x08,JST_PH_B8B-PH-SM4-TB_1x08-1MP_P2.00mm_Vertical,19.0,29.0,0.0,top
+J2,Conn_01x08,JST_PH_B8B-PH-SM4-TB_1x08-1MP_P2.00mm_Vertical,19.0,19.0,0.0,top
+J3,Conn_01x07,JST_GH_BM07B-GHS-TBT_1x07-1MP_P1.25mm_Vertical,4.0,8.0,90.0,top
+U2,TCAN332G,SOIC-8_3.9x4.9mm_P1.27mm,15.0,10.0,0.0,top

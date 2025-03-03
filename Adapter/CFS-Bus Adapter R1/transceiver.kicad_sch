@@ -1,0 +1,17 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "17115d49-965e-44e9-b5d4-b74a9a0db923")
+	(paper "A4")
+	(title_block
+		(title "Transiver")
+		(date "2023-06-16")
+		(rev "R${release}")
+		(company "${company}")
+		(comment 1 "${release_state}")
+		(comment 2 "${prefix}-S${type_number}-R${release}-V${sch_variant}-C${sch_ci}")
+		(comment 3 "hardware/${prefix}-S${type_number}_${short_desciption}")
+	)
+	(lib_symbols)
+)
