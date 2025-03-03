@@ -30,7 +30,7 @@ The other end is another custom PCB. In this case, it's another custom PCB heavi
 
 It also has a pair of LEDs to indicate buffer status, and some activity LEDs. 
 
-Both boards are up at [Adapter](~/Adapter/). License for them is GPL3, since the candleLight FD is GPL3.
+Both boards are up at [Adapter](Adapter/). License for them is GPL3, since the candleLight FD is GPL3.
 
 I had JLCPCB do the PCBs, they work out to ~$7 ea (CAN Adapter) and ~$10 ea (CFS-Bus Adapter), at qty 5 of each. I'm also trying LCSC's [custom-cable service](https://www.lcsc.com/customcables?utm_source=customcables&utm_medium=navbar) to make the short interposing cables, which wound up being ~$50 for 10 of each.
 
