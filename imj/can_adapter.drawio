@@ -1,0 +1,95 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.15">
+  <diagram name="Page-1" id="AYXAdfu-PvBJ6sIoCFhn">
+    <mxGraphModel dx="1419" dy="1280" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-1" value="Existing Controller PCB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="180" width="330" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-2" value="Power + RS485" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="260" y="190" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-7" target="UYvXsQ09Rr7lZbdBLuX2-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="180" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-4" value="Unused" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="330" y="290" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-6" target="UYvXsQ09Rr7lZbdBLuX2-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-6" value="Power + RS485" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="425" y="230" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-7" value="Power + CAN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="425" y="190" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-8" target="UYvXsQ09Rr7lZbdBLuX2-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-8" value="CAN&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="410" y="290" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="25" width="550" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-12" value="Adapter&lt;div&gt;Board&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="460" y="280" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-13" target="UYvXsQ09Rr7lZbdBLuX2-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-13" value="Existing&amp;nbsp;&lt;div&gt;Rear-Panel Connector&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="415" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-15" value="CFS Box" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="130" y="100" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;startArrow=classic;startFill=0;endArrow=none;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="980.0000000000002" y="42.41379310344837" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="990.0000000000002" y="87.24137931034488" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-16" value="Custom&amp;nbsp;&lt;div&gt;CFS-Bus-Connector&lt;br&gt;Adapter PCB&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="730" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-18" value="Existing Filament Buffer (unchanged)" style="rounded=0;whiteSpace=wrap;html=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="525" y="200" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-19" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="UYvXsQ09Rr7lZbdBLuX2-18" target="UYvXsQ09Rr7lZbdBLuX2-13">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="190" as="sourcePoint" />
+            <mxPoint x="560" y="140" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="585" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-20" value="CFS-Bus" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="630" y="20" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-24" value="CFS-Bus" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="570" y="110" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-26" value="CAN - USB&amp;nbsp;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;24V In&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="75" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-31" value="USB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="890" y="70" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UYvXsQ09Rr7lZbdBLuX2-32" value="24V" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="890" y="25" width="60" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
