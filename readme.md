@@ -37,3 +37,13 @@ I had JLCPCB do the PCBs, they work out to ~$7 ea (CAN Adapter) and ~$10 ea (CFS
 Full production files for each of the PCBs are in the respective folders, they should drag & drop into JLCPCB's PCBA service. The cables are based on a lot of guesswork about what the right connectors are, once I confirm I have the right part-numbers, I'll document that here as well.
 
 Note that immediately after ordering the CFS-Bus-Adapter, I realized it would be super neat to allow the CAN transciever to be either connected to the CAN peripheral in the MCU (which is how it is now), and a UART interface. That would let this interact with the existing firmware if/when it get's properly reverse engineered, or Creality finally stops violating the GPL and provides the source for their [distributed-in-compiled-form-only klipper extensions](https://github.com/Guilouz/Creality-K2Plus-Extracted-Firmwares/tree/main/Firmware/usr/share/klipper/klippy/extras) (see all `.so` files, which are compiled with cython to make them opaque).
+
+
+------
+
+First rev board issues:
+
+ - Pinout on J3 for CFS Can adapter board is reversed.   
+   This can be fixed by just mirroring the routing of the jumper cable.
+ - The open-collector buffer signals have pullups to 5V in the buffer. That means the buffer status LED resistors as implemented (i.e. between 24V and the buffer status pins) are effectively always on, since the 5V pullup winds up sinking current from the 24V LED rail.   
+   This needs to be fixed by rev-ing the board (or with track hackery). Right now, the CFS buffer just changes the LED brightness, rather then turning them on and off.
